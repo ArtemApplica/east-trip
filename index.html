@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поїздка на Схід — Березень 2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--bg:#fafafa;--text:#1a1a1a;--text-secondary:#555;--accent:#2c5f2d;--accent-light:#e8f0e8;--border:#e0e0e0;--card-bg:#fff}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+        .lang-toggle{position:fixed;top:16px;right:16px;z-index:200;display:flex;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(10px)}
+        .lang-toggle button{padding:8px 16px;border:none;cursor:pointer;font-weight:600;font-size:.85rem;font-family:inherit;background:rgba(255,255,255,.15);color:rgba(255,255,255,.7);transition:all .2s}
+        .lang-toggle button.active{background:rgba(255,255,255,.9);color:var(--accent)}
+        .lang-toggle.scrolled button{background:rgba(0,0,0,.05);color:var(--text-secondary)}
+        .lang-toggle.scrolled button.active{background:var(--accent);color:#fff}
+        .en{display:none}body.en .en{display:block}body.en .uk{display:none}
+        span.en{display:none}body.en span.en{display:inline}body.en span.uk{display:none}
+        .hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a2a1a 0%,#2c3e2c 50%,#1a2a1a 100%);color:#fff;text-align:center;padding:60px 20px}
+        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,var(--bg),transparent)}
+        .hero-content{max-width:700px;z-index:1}
+        .hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;line-height:1.2}
+        .hero .subtitle{font-size:1.1rem;opacity:.85}.hero .regions{font-size:.95rem;opacity:.65;margin-top:12px}
+        .day-nav{position:sticky;top:0;z-index:100;background:rgba(250,250,250,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 20px}
+        .day-nav-inner{max-width:800px;margin:0 auto;display:flex;overflow-x:auto}
+        .day-nav a{display:block;padding:14px 20px;text-decoration:none;color:var(--text-secondary);font-size:.9rem;font-weight:500;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s}
+        .day-nav a:hover,.day-nav a.active{color:var(--accent);border-bottom-color:var(--accent)}
+        .content{max-width:720px;margin:0 auto;padding:0 20px}
+        .day-section{padding:60px 0 40px;border-bottom:1px solid var(--border)}.day-section:last-child{border-bottom:none}
+        .day-label{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:8px}
+        .day-section h2{font-size:1.8rem;font-weight:700;letter-spacing:-.02em;margin-bottom:24px;line-height:1.3}
+        .day-section h3{font-size:1.15rem;font-weight:600;margin-top:32px;margin-bottom:12px}
+        .day-section p{margin-bottom:16px;color:var(--text-secondary);font-size:1rem}
+        .story-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:24px;margin:24px 0}
+        .story-card .name{font-weight:600;font-size:1.05rem;margin-bottom:8px}.story-card p{margin-bottom:8px;font-size:.95rem}
+        .prayer-need{background:#fdf6ec;border-left:3px solid #c8a44e;padding:12px 16px;border-radius:0 8px 8px 0;margin-top:12px;font-size:.9rem;color:#6b5a2e}
+        .prayer-need strong{display:block;margin-bottom:4px;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+        .reflection{background:var(--accent-light);border-radius:12px;padding:24px;margin:24px 0}
+        .reflection h4{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:12px}
+        .reflection ul{list-style:none;padding:0}
+        .reflection li{padding:8px 0;padding-left:20px;position:relative;color:var(--text-secondary);font-size:.95rem}
+        .reflection li::before{content:'\2014';position:absolute;left:0;color:var(--accent)}
+        .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:24px 0}
+        .photo-grid img{width:100%;border-radius:8px;object-fit:cover;aspect-ratio:4/3;background:#eee;cursor:pointer;transition:transform .2s}
+        .photo-grid img:hover{transform:scale(1.02)}
+        .map-container{margin:24px 0;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+        .map-container img{width:100%;display:block}
+        .map-caption{padding:12px 16px;background:#1a2a1a;color:rgba(255,255,255,.7);font-size:.85rem}
+        .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin:24px 0}
+        .video-grid video{width:100%;border-radius:8px;background:#000}
+        .team{display:flex;gap:24px;margin:24px 0;flex-wrap:wrap}
+        .team-member{flex:1;min-width:200px;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:20px}
+        .team-member .name{font-weight:600;margin-bottom:6px}.team-member p{font-size:.85rem;color:var(--text-secondary);margin-bottom:0}
+        .coming-soon{text-align:center;padding:60px 20px;color:#bbb}.coming-soon .icon{font-size:2rem;margin-bottom:12px}.coming-soon p{font-size:.95rem;color:#bbb}
+        .support-section{text-align:center;padding:60px 20px;background:var(--accent-light);margin-top:40px}
+        .support-section h3{font-size:1.4rem;font-weight:700;margin-bottom:12px}
+        .support-section p{color:var(--text-secondary);margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto}
+        .support-btn{display:inline-block;background:var(--accent);color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.95rem;transition:background .2s}
+        .support-btn:hover{background:#1e4a1f}
+        footer{text-align:center;padding:40px 20px;font-size:.8rem;color:#bbb}
+        .lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.9);align-items:center;justify-content:center;cursor:zoom-out}
+        .lightbox.active{display:flex}.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px;object-fit:contain}
+        @media(max-width:600px){.hero{min-height:50vh;padding:40px 20px}.day-section{padding:40px 0 30px}.day-section h2{font-size:1.4rem}.team{flex-direction:column}.photo-grid,.video-grid{grid-template-columns:1fr}}
+        .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}.fade-in.visible{opacity:1;transform:translateY(0)}
+    </style>
+</head>
+<body>
+    <div class="lang-toggle" id="langToggle">
+        <button class="active" onclick="setLang('uk')">UA</button>
+        <button onclick="setLang('en')">EN</button>
+    </div>
+    <section class="hero"><div class="hero-content">
+        <h1><span class="uk">Поїздка на Схід</span><span class="en">Trip to the East</span></h1>
+        <p class="subtitle"><span class="uk">Березень 2026</span><span class="en">March 2026</span></p>
+        <p class="regions"><span class="uk">Сумська · Харківська · Дніпропетровська область</span><span class="en">Sumy · Kharkiv · Dnipro regions</span></p>
+    </div></section>
+    <nav class="day-nav"><div class="day-nav-inner">
+        <a href="#intro" class="active"><span class="uk">Вступ</span><span class="en">Intro</span></a>
+        <a href="#day1"><span class="uk">День 1</span><span class="en">Day 1</span></a>
+        <a href="#day2"><span class="uk">День 2</span><span class="en">Day 2</span></a>
+        <a href="#day3"><span class="uk">День 3</span><span class="en">Day 3</span></a>
+        <a href="#day4"><span class="uk">День 4</span><span class="en">Day 4</span></a>
+    </div></nav>
+    <div class="content">
+        <section id="intro" class="day-section fade-in">
+            <div class="uk"><div class="day-label">Про поїздку</div><h2>Відвідати друзів і братів, які служать</h2><p>Поїздка на Схід — відвідати друзів і братів з церкви які служать, місцеві церкви і організації в Сумській, Харківській і Дніпропетровській областях.</p></div>
+            <div class="en"><div class="day-label">About the trip</div><h2>Visiting friends and brothers who serve</h2><p>A trip to Eastern Ukraine to visit friends and brothers from church who serve, local churches and organizations in Sumy, Kharkiv, and Dnipro regions.</p></div>
+            <div class="map-container"><img src="day1/whole%20trip%20map.png" alt="Trip route map"><div class="map-caption"><span class="uk">Маршрут поїздки: Львів → Суми → Харків → Дніпро</span><span class="en">Trip route: Lviv → Sumy → Kharkiv → Dnipro</span></div></div>
+            <div class="team">
+                <div class="team-member"><div class="name"><span class="uk">Маттіас</span><span class="en">Mattias</span></div><p class="uk">Військовий капелан, відповідальний за напрям військових в УБЦ. Аргентинець з українським корінням. Місіонер 20+ років. Працює з колишніми військовими та іноземними військовими.</p><p class="en">Military chaplain, responsible for the military ministry at UBC. Argentine with Ukrainian roots. Missionary for 20+ years. Works with veterans and foreign military personnel.</p></div>
+                <div class="team-member"><div class="name"><span class="uk">Давид</span><span class="en">David</span></div><p class="uk">Українізований американець з Техасу, живе у Львові з 2008, місіонер та член УБЦ.</p><p class="en">Ukrainianized American from Texas, living in Lviv since 2008, missionary and UBC member.</p></div>
+            </div>
+        </section>
+        <section id="day1" class="day-section fade-in">
+            <div class="uk"><div class="day-label">День 1</div><h2>Суми</h2></div>
+            <div class="en"><div class="day-label">Day 1</div><h2>Sumy</h2></div>
+            <div class="map-container"><img src="day1/map-sumy.jpg" alt="Sumy frontline map"><div class="map-caption"><span class="uk">Сумська область. Москалі за 30 км від Сум.</span><span class="en">Sumy region. Russian forces 30 km from Sumy.</span></div></div>
+            <p class="uk">Після виїзду опівночі зі Львова о 12 були в Сумах. Мали зустріч із Віктором, другом Маттіаса. Далі — добралися до Харківської області на місце ночівлі.</p>
+            <p class="en">After departing Lviv at midnight, we arrived in Sumy by noon. We met with Viktor, Mattias's friend. Then we headed to Kharkiv region for the night.</p>
+            <div class="uk"><h3>Зустріч з Дмитром</h3></div><div class="en"><h3>Meeting with Dmytro</h3></div>
+            <div class="photo-grid">
+                <img src="day1/day1-group.jpg" alt="Group photo" onclick="openLightbox(this)">
+                <img src="day1/day2-group.jpg" alt="Meeting with Dmytro" onclick="openLightbox(this)">
+            </div>
+            <div class="story-card">
+                <div class="uk"><div class="name">Історія Віктора</div><p>Віктор з Рубіжного, був в полоні москалів під час окупації, але втік на територію України, долучився волонтером до контрнаступів Херсону та Харкова, пізніше долучився до ЗСУ, відповідає за комунікацію з рідними загиблих.</p><p>Йому 25, минулого року одружився. Рідна церква з Дніпра не підтримує його, ніхто з братів не заїжджає, лиш Маттіас, як його друг, час від часу приїжджає підбадьорити.</p><div class="prayer-need"><strong>Молитовна потреба</strong>Планує звільнятися і переводитись на капеланську службу в серпні, після закінчення контракту.</div></div>
+                <div class="en"><div class="name">Viktor's story</div><p>Viktor is from Rubizhne. He was captured by Russian forces during the occupation but escaped to Ukrainian territory. He volunteered during the Kherson and Kharkiv counteroffensives, later joined the Armed Forces of Ukraine, and now handles communication with families of fallen soldiers.</p><p>He is 25, got married last year. His home church in Dnipro doesn't support him, none of the brothers visit — only Mattias, as his friend, comes from time to time to encourage him.</p><div class="prayer-need"><strong>Prayer need</strong>Plans to leave active service and transfer to the chaplaincy in August, after his contract ends.</div></div>
+            </div>
+            <div class="reflection">
+                <div class="uk"><h4>Думки і спостереження</h4><ul><li>Церква Христова не про конфесії, обряди, теологічні відмінності, а про Христа якого ми або несемо людям в різні часи, або живемо в своїх бульбашці роботи, сім'ї, служіння, втрачаючи шанс бути з тими, хто потребує Христа.</li><li>Віктор і Альона мають єдність в сім'ї, єдність на одруження і її переїзд із Закарпаття до Сум, на життя в місті де москалі за 30 км від них, в життя без зрозумілого майбутнього і постійним ризиком. Наявність або відсутність єдності робить сім'ю сильно, або авторитарною, або аморфною, або місійною, або поділеною.</li></ul></div>
+                <div class="en"><h4>Thoughts and observations</h4><ul><li>The Church of Christ is not about denominations, rituals, or theological differences — it's about the Christ we either carry to people in difficult times, or we stay in our comfortable bubble of work, family, and ministry, missing the chance to be with those who need Christ.</li><li>Viktor and Aliona have unity in their family — unity to marry and for her to move from Zakarpattia to Sumy, to live in a city where Russian forces are 30 km away, to live without a clear future and with constant risk. The presence or absence of unity makes a family strong, or authoritarian, or shapeless, or missional, or divided.</li></ul></div>
+            </div>
+            <p class="uk">Іншу зустріч з чоловіком сестри, яка відвідує нашу церкву не змогли зустрітись, тому що не зміг виїхати з пункту розташування, через високу активність розвідувальних дронів.</p>
+            <p class="en">We couldn't meet with the husband of a sister who attends our church — he couldn't leave his unit's location due to high reconnaissance drone activity.</p>
+            <p class="uk" style="font-style:italic;color:#888">З цікавого — після перевірки СБУ на в'їзді до Сум впевнився що я не москаль і нічого спільного з ними не маю.</p>
+            <p class="en" style="font-style:italic;color:#888">Fun fact — after the SBU checkpoint at the entrance to Sumy, they confirmed I'm not Russian and have nothing in common with them.</p>
+            <p class="uk">Вечір провели біля Харкова на базі проекту, який служить сиротам та вдовам, були на їх базі в Дрогобичі.</p>
+            <p class="en">We spent the evening near Kharkiv at a project base that serves orphans and widows — we had previously visited their base in Drohobych.</p>
+            <div class="video-grid">
+                <video controls playsinline preload="metadata"><source src="day1/video1.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day1/video2.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day1/video3.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day1/video4.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day1/video5.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day1/video6.mp4" type="video/mp4"></video>
+            </div>
+        </section>
+        <section id="day2" class="day-section fade-in">
+            <div class="uk"><div class="day-label">День 2</div><h2>Харківська область</h2></div>
+            <div class="en"><div class="day-label">Day 2</div><h2>Kharkiv region</h2></div>
+            <div class="photo-grid">
+                <img src="day2/photo1.jpg" onclick="openLightbox(this)">
+                <img src="day2/photo2.jpg" onclick="openLightbox(this)">
+                <img src="day2/photo3.jpg" onclick="openLightbox(this)">
+                <img src="day2/photo4.jpg" onclick="openLightbox(this)">
+                <img src="day2/photo5.jpg" onclick="openLightbox(this)">
+            </div>
+            <div class="video-grid">
+                <video controls playsinline preload="metadata"><source src="day2/video_1228.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day2/video_1232.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day2/video_2613.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day2/video_2617.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="metadata"><source src="day2/video_2618.mp4" type="video/mp4"></video>
+            </div>
+            <p class="uk" style="color:#bbb;text-align:center;font-style:italic">Текст для цього дня буде додано найближчим часом</p>
+            <p class="en" style="color:#bbb;text-align:center;font-style:italic">Text for this day will be added soon</p>
+        </section>
+        <section id="day3" class="day-section fade-in">
+            <div class="uk"><div class="day-label">День 3</div><h2>Скоро буде</h2></div>
+            <div class="en"><div class="day-label">Day 3</div><h2>Coming soon</h2></div>
+            <div class="coming-soon"><div class="icon">✍️</div><p class="uk">Звіт за цей день з'явиться найближчим часом</p><p class="en">Report for this day is coming soon</p></div>
+        </section>
+        <section id="day4" class="day-section fade-in">
+            <div class="uk"><div class="day-label">День 4</div><h2>Скоро буде</h2></div>
+            <div class="en"><div class="day-label">Day 4</div><h2>Coming soon</h2></div>
+            <div class="coming-soon"><div class="icon">✍️</div><p class="uk">Звіт за цей день з'явиться найближчим часом</p><p class="en">Report for this day is coming soon</p></div>
+        </section>
+    </div>
+    <section class="support-section">
+        <h3 class="uk">Підтримати поїздку</h3><h3 class="en">Support the trip</h3>
+        <p class="uk">Якщо хтось хоче долучитися і закинути на витрати на дорогу і потрібні речі які будемо купувати</p>
+        <p class="en">If you'd like to contribute towards travel expenses and supplies</p>
+        <a href="https://send.monobank.ua/jar/3XR5VR7nNT" class="support-btn" target="_blank"><span class="uk">Підтримати через Monobank</span><span class="en">Support via Monobank</span></a>
+    </section>
+    <footer><span class="uk">Українська Біблійна Церква · Львів · 2026</span><span class="en">Ukrainian Bible Church · Lviv · 2026</span></footer>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt=""></div>
+    <script>
+        function setLang(l){document.body.classList.toggle('en',l==='en');document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(l==='en'?'EN':'UA')));}
+        window.addEventListener('scroll',()=>{document.getElementById('langToggle').classList.toggle('scrolled',window.scrollY>400);});
+        const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.1});
+        document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+        const secs=document.querySelectorAll('.day-section'),navs=document.querySelectorAll('.day-nav a');
+        window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)c=s.id;});navs.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+c));});
+        function openLightbox(i){document.getElementById('lightbox-img').src=i.src;document.getElementById('lightbox').classList.add('active');}
+        function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
+        document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+    </script>
+</body>
+</html>
