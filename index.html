@@ -14,8 +14,9 @@
         .lang-toggle button.active{background:rgba(255,255,255,.9);color:var(--accent)}
         .lang-toggle.scrolled button{background:rgba(0,0,0,.05);color:var(--text-secondary)}
         .lang-toggle.scrolled button.active{background:var(--accent);color:#fff}
-        .en{display:none}body.en .en{display:block}body.en .uk{display:none}
-        span.en{display:none}body.en span.en{display:inline}body.en span.uk{display:none}
+        .en{display:none !important}body.en .en{display:block !important}body.en .uk{display:none !important}
+        span.en{display:none !important}body.en span.en{display:inline !important}body.en span.uk{display:none !important}
+        p.en{display:none !important}body.en p.en{display:block !important}body.en p.uk{display:none !important}
         .hero{position:relative;min-height:70vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a2a1a 0%,#2c3e2c 50%,#1a2a1a 100%);color:#fff;text-align:center;padding:60px 20px}
         .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,var(--bg),transparent)}
         .hero-content{max-width:700px;z-index:1}
@@ -65,7 +66,7 @@
     </style>
 </head>
 <body>
-    <script>function setLang(l){document.body.classList.toggle('en',l==='en');document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(l==='en'?'EN':'UA')));}</script>
+    <script>function setLang(l){if(l==='en'){document.body.className='en';}else{document.body.className='';}document.querySelectorAll('.lang-toggle button').forEach(function(b){if(b.textContent.trim()===(l==='en'?'EN':'UA')){b.className='active';}else{b.className='';}});}</script>
     <div class="lang-toggle" id="langToggle">
         <button class="active" onclick="setLang('uk')">UA</button>
         <button onclick="setLang('en')">EN</button>
