@@ -65,6 +65,7 @@
     </style>
 </head>
 <body>
+    <script>function setLang(l){document.body.classList.toggle('en',l==='en');document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(l==='en'?'EN':'UA')));}</script>
     <div class="lang-toggle" id="langToggle">
         <button class="active" onclick="setLang('uk')">UA</button>
         <button onclick="setLang('en')">EN</button>
@@ -117,12 +118,12 @@
             <p class="uk">Вечір провели біля Харкова на базі проекту, який служить сиротам та вдовам, були на їх базі в Дрогобичі.</p>
             <p class="en">We spent the evening near Kharkiv at a project base that serves orphans and widows — we had previously visited their base in Drohobych.</p>
             <div class="video-grid">
-                <video controls playsinline preload="none"><source src="day1/video1.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day1/video2.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day1/video3.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day1/video4.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day1/video5.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day1/video6.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day1/video1.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day1/video2.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day1/video3.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day1/video4.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day1/video5.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day1/video6.mp4" type="video/mp4"></video>
             </div>
         </section>
         <section id="day2" class="day-section fade-in">
@@ -157,13 +158,13 @@
                 <img src="day2/vitalik2.jpg" alt="With Vitalik" loading="lazy" onclick="openLightbox(this)">
             </div>
             <div class="video-grid">
-                <video controls playsinline preload="none"><source src="day2/vitalik_1228.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day2/vitalik_1232.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day2/vitalik_2613.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day2/vitalik_2617.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day2/vitalik_2618.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day2/vitalik_6287.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day2/vitalik_extra.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day2/vitalik_1228.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day2/vitalik_1232.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day2/vitalik_2613.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day2/vitalik_2617.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day2/vitalik_2618.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day2/vitalik_6287.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day2/vitalik_extra.mp4" type="video/mp4"></video>
             </div>
         </section>
         <section id="day3" class="day-section fade-in">
@@ -185,8 +186,8 @@
             </div>
             <div class="photo-grid"><img src="day3/chaplain-oleksandr.jpg" alt="Chaplain Oleksandr" loading="lazy" onclick="openLightbox(this)"></div>
             <div class="video-grid">
-                <video controls playsinline preload="none"><source src="day3/hospital-music.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day3/hospital-music-full.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day3/hospital-music.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day3/hospital-music-full.mp4" type="video/mp4"></video>
             </div>
             <div class="story-card">
                 <div class="uk"><div class="name">Розбомблена церква</div><p>Капелан показав приміщення церкви, яке було повністю розбомблене. На момент прильоту в церкві знаходилось 26 людей, які чекали на евакуацію. Ніхто з них не загинув, на наступний день почалась окупація і вони всі ховалися в підвалі з дітьми.</p><p>Син капелана зник безвісті.</p></div>
@@ -197,8 +198,8 @@
                 <img src="day3/church.jpg" alt="Church" loading="lazy" onclick="openLightbox(this)">
             </div>
             <div class="video-grid">
-                <video controls playsinline preload="none"><source src="day3/church-video1.mp4" type="video/mp4"></video>
-                <video controls playsinline preload="none"><source src="day3/church-video2.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day3/church-video1.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day3/church-video2.mp4" type="video/mp4"></video>
             </div>
             <div class="story-card">
                 <div class="uk"><div class="name">Вова Кльонов</div><p>Наш брат Вова займається ремонтами дронів.</p><div class="prayer-need"><strong>Молитовна потреба</strong>Хоче перевестися в інший батальйон і зайняти позицію дизайнера, служачи по професії.</div></div>
@@ -238,7 +239,7 @@
                 <img src="day4/prayer.jpg" alt="Prayer" loading="lazy" onclick="openLightbox(this)">
             </div>
             <div class="video-grid">
-                <video controls playsinline preload="none"><source src="day4/banya-video.mp4" type="video/mp4"></video>
+                <video controls playsinline preload="none"><source data-src="day4/banya-video.mp4" type="video/mp4"></video>
             </div>
             <div class="reflection">
                 <div class="uk"><h4>Спостереження</h4><ul><li>Враховуючи що не приходилось перетинатися зі схожим контингентом, було цікаво які це люди і які в них долі. Спілкуючись з різними хлопцями відчув певну благородність в їхніх словах та рішеннях. Кожен має різну історію, різні причини, але в прикладах і історіях була присутня моральність, сміливість віддати життя гідно, небажання йти на компроміс.</li><li>Подумав, що ось така благородність — це є частиною того, що виділяє і відрізняє нас від ворога, навіть серед зеків.</li></ul></div>
@@ -291,7 +292,6 @@
     <footer><span class="uk">Українська Біблійна Церква · Львів · 2026</span><span class="en">Ukrainian Bible Church · Lviv · 2026</span></footer>
     <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt=""></div>
     <script>
-        function setLang(l){document.body.classList.toggle('en',l==='en');document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(l==='en'?'EN':'UA')));}
         window.addEventListener('scroll',()=>{document.getElementById('langToggle').classList.toggle('scrolled',window.scrollY>400);});
         const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.1});
         document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
@@ -300,6 +300,8 @@
         function openLightbox(i){document.getElementById('lightbox-img').src=i.src;document.getElementById('lightbox').classList.add('active');}
         function closeLightbox(){document.getElementById('lightbox').classList.remove('active');}
         document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+        const vidObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){const s=x.target.querySelector('source[data-src]');if(s){s.src=s.dataset.src;x.target.load();}vidObs.unobserve(x.target);}});},{rootMargin:'200px'});
+        document.querySelectorAll('video').forEach(v=>vidObs.observe(v));
     </script>
 </body>
 </html>
