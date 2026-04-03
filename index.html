@@ -304,5 +304,6 @@
         const vidObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){const s=x.target.querySelector('source[data-src]');if(s){s.src=s.dataset.src;x.target.load();}vidObs.unobserve(x.target);}});},{rootMargin:'200px'});
         document.querySelectorAll('video').forEach(v=>vidObs.observe(v));
     </script>
+    <script data-goatcounter="https://artemweltkjh.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
